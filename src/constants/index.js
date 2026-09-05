@@ -1,111 +1,93 @@
 export const myProjects = [
   {
     id: 1,
-    title: "2048 Game (RISC-V Assembly)",
+    title: "Archaeon — Code Intelligence & RAG Platform",
     description:
-      "Terminal-based implementation of the 2048 game written entirely in RISC-V assembly.",
+      "A semantic code RAG platform that clones GitHub repositories, reconstructs architecture via AST parsing, and answers technical questions with source-grounded citations.",
     subDescription: [
-      "Implemented tile shifting, merging logic, and move validation using low-level assembly routines.",
-      "Designed modular subroutines for game-state tracking and score calculation.",
-      "Built a dynamic 4×4 terminal board renderer.",
-      "Strengthened understanding of memory layout, registers, and debugging in assembly.",
+      "Engineered an asynchronous code intelligence engine that clones repositories and reconstructs architecture using Python AST parsing.",
+      "Built a semantic code RAG pipeline using Google embeddings and ChromaDB with AST-bounded chunking and LRU query caching.",
+      "Implemented a grounded Q&A API with Gemini 3.6 Flash and exact line-level code citations.",
+      "Added background job tracking with SQLite/FastAPI and a comprehensive automated test suite with 100% pass coverage.",
     ],
     href: "",
+    github: "https://github.com/manuwastaken/software-archaeologist",
     logo: "",
-    image: `${import.meta.env.BASE_URL}assets/projects/2048.png`,
+    image: `${import.meta.env.BASE_URL}assets/projects/archaeon.png`,
     tags: [
-      { id: 1, name: "RISC-V", path: `${import.meta.env.BASE_URL}assets/logos/riscv.png` },
-      { id: 2, name: "Assembly", path: `${import.meta.env.BASE_URL}assets/logos/riscv.png` },
-      { id: 3, name: "Systems Programming", path: `${import.meta.env.BASE_URL}assets/logos/cplusplus.svg` },
+      { id: 1, name: "Python", path: `${import.meta.env.BASE_URL}assets/logos/python.svg` },
+      { id: 2, name: "FastAPI", path: `${import.meta.env.BASE_URL}assets/logos/python.svg` },
+      { id: 3, name: "RAG", path: `${import.meta.env.BASE_URL}assets/logos/python.svg` },
+      { id: 4, name: "AI", path: `${import.meta.env.BASE_URL}assets/logos/python.svg` },
     ],
   },
 
   {
     id: 2,
-    title: "Seam Carving - Content-Aware Image Resizing (C)",
+    title: "Word2Vec — Neural Word Embeddings",
     description:
-      "A dynamic-programming-based image resizing tool that removes low-energy seams.",
+      "A PyTorch implementation of Skip-Gram with Negative Sampling for learning semantic word vectors from raw text.",
     subDescription: [
-      "Implemented energy-map computation and seam detection using dynamic programming.",
-      "Built iterative seam removal pipeline for intelligent image resizing.",
-      "Added CLI tools for seam visualization and brightness statistics.",
-      "Optimized pixel manipulation with efficient memory access.",
+      "Implemented SGNS architecture in PyTorch for learning embeddings from text corpora.",
+      "Built a modular training pipeline with subsampling, negative sampling, and vocabulary filtering.",
+      "Used cosine similarity and nearest-neighbor search to evaluate vector quality and analogy solving.",
+      "Created an interactive Streamlit interface for semantic exploration and embedding visualization.",
     ],
     href: "",
+    github: "https://github.com/manuwastaken/word2vec-engine",
     logo: "",
-    image: `${import.meta.env.BASE_URL}assets/projects/seam-carving.png`,
+    image: `${import.meta.env.BASE_URL}assets/projects/word2vec.png`,
     tags: [
-      { id: 1, name: "C", path: `${import.meta.env.BASE_URL}assets/logos/c.svg` },
-      { id: 2, name: "Algorithms", path: `${import.meta.env.BASE_URL}assets/logos/cplusplus.svg` },
-      { id: 3, name: "Dynamic Programming", path: `${import.meta.env.BASE_URL}assets/logos/cplusplus.svg` },
+      { id: 1, name: "Python", path: `${import.meta.env.BASE_URL}assets/logos/python.svg` },
+      { id: 2, name: "PyTorch", path: `${import.meta.env.BASE_URL}assets/logos/python.svg` },
+      { id: 3, name: "NLP", path: `${import.meta.env.BASE_URL}assets/logos/python.svg` },
+      { id: 4, name: "Embeddings", path: `${import.meta.env.BASE_URL}assets/logos/python.svg` },
     ],
   },
 
   {
     id: 3,
-    title: "Wordle Terminal Game (C)",
+    title: "TinyC Compiler",
     description:
-      "Feature-complete terminal version of Wordle with extended gameplay logic.",
+      "A compiler for the TinyC language, including AST generation, semantic analysis, and RISC-V code generation.",
     subDescription: [
-      "Implemented trie-based dictionary lookup for fast word validation.",
-      "Built Unicode-based colored feedback system for guesses.",
-      "Added full gameplay loop with replay support and win detection.",
-      "Designed Quantum Wordle mode supporting dual hidden words.",
+      "Implemented an abstract syntax tree and semantic analysis for the TinyC language.",
+      "Built name resolution, scoping, and type checking according to the TinyC type system.",
+      "Generated RISC-V machine code from semantically checked programs.",
+      "Implemented verification-condition generation to reason about program correctness.",
     ],
     href: "",
+    github: "https://github.com/manuwastaken/TinyCC-Compiler",
     logo: "",
-    image: `${import.meta.env.BASE_URL}assets/projects/wordle.png`,
+    image: `${import.meta.env.BASE_URL}assets/projects/tinyc.png`,
     tags: [
-      { id: 1, name: "C", path: `${import.meta.env.BASE_URL}assets/logos/c.svg` },
-      { id: 2, name: "Data Structures", path: `${import.meta.env.BASE_URL}assets/logos/cplusplus.svg` },
-      { id: 3, name: "Trie", path: `${import.meta.env.BASE_URL}assets/logos/cplusplus.svg` },
+      { id: 1, name: "Java", path: `${import.meta.env.BASE_URL}assets/logos/java.svg` },
+      { id: 2, name: "RISC-V", path: `${import.meta.env.BASE_URL}assets/logos/riscv.png` },
+      { id: 3, name: "Compiler Design", path: `${import.meta.env.BASE_URL}assets/logos/cplusplus.svg` },
     ],
   },
 
   {
     id: 4,
-    title: "Stock Market Sentiment Analyzer",
+    title: "RayCaster",
     description:
-      "LLM-powered sentiment analyzer that extracts insights from financial newsletters.",
+      "A Wolfenstein-style raycasting engine in C with perspective rendering, texture mapping, and CLI map tooling.",
     subDescription: [
-      "Built an email scraping pipeline using IMAP.",
-      "Summarized financial content using an LLM-based NLP workflow.",
-      "Generated bullish/bearish sentiment indicators.",
-      "Integrated text-to-speech playback via a custom GUI.",
+      "Implemented a raycasting engine using DDA grid traversal for wall intersection detection.",
+      "Built the pinhole camera model and perspective projection with configurable field of view.",
+      "Added texture mapping with wall orientation detection and surface sampling.",
+      "Rendered floors, ceilings, minimaps, and continuous frame generation for a playable graphics prototype.",
     ],
     href: "",
+    github: "https://github.com/manuwastaken/raycast-3d-engine",
     logo: "",
-    image: `${import.meta.env.BASE_URL}assets/projects/sentiment.jpg`,
+    image: `${import.meta.env.BASE_URL}assets/projects/raycast.png`,
     tags: [
-      { id: 1, name: "Python", path: `${import.meta.env.BASE_URL}assets/logos/python.svg` },
-      { id: 2, name: "NLP", path: `${import.meta.env.BASE_URL}assets/logos/python.svg` },
-      { id: 3, name: "IMAP", path: `${import.meta.env.BASE_URL}assets/logos/python.svg` },
-      { id: 4, name: "GUI", path: `${import.meta.env.BASE_URL}assets/logos/python.svg` },
+      { id: 1, name: "C", path: `${import.meta.env.BASE_URL}assets/logos/c.svg` },
+      { id: 2, name: "Graphics", path: `${import.meta.env.BASE_URL}assets/logos/cplusplus.svg` },
+      { id: 3, name: "Raycasting", path: `${import.meta.env.BASE_URL}assets/logos/cplusplus.svg` },
     ],
   },
-
- /* {
-    id: 5,
-    title: "Portfolio Website",
-    description:
-      "Personal developer portfolio showcasing projects and technical skills.",
-    subDescription: [
-      "Built responsive UI using React and Tailwind CSS.",
-      "Structured reusable project components with modular architecture.",
-      "Optimized performance and accessibility for recruiter viewing.",
-      "Deployed with modern frontend tooling.",
-    ],
-    href: "",
-    logo: "",
-    image: "/assets/projects/portfolio.jpg",
-    tags: [
-      { id: 1, name: "React", path: "/assets/logos/react.svg" },
-      { id: 2, name: "TailwindCSS", path: "/assets/logos/tailwindcss.svg" },
-      { id: 3, name: "JavaScript", path: "/assets/logos/javascript.svg" },
-    ],
-  },
-
-*/
 ];
 export const mySocials = [
   /*{

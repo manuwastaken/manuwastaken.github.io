@@ -1,25 +1,42 @@
 import React, { useState } from 'react';
-import { motion } from "motion/react";
-function Navigation() {
+import { motion } from "framer-motion";
+
+function Navigation({ onItemClick }) {
   return (
-    <ul className="nav-ul">
-      <li className="nav-li">
-        <a className="nav-link" href="#home">
+    <ul className="flex flex-col sm:flex-row items-center gap-1 sm:gap-6 text-xs font-mono">
+      <li>
+        <a 
+          onClick={onItemClick}
+          className="text-neutral-400 hover:text-white transition-colors px-4 py-2 rounded-full hover:bg-white/5" 
+          href="#home"
+        >
           Home
         </a>
       </li>
-      <li className="nav-li">
-        <a className="nav-link" href="#about">
+      <li>
+        <a 
+          onClick={onItemClick}
+          className="text-neutral-400 hover:text-white transition-colors px-4 py-2 rounded-full hover:bg-white/5" 
+          href="#about"
+        >
           About
         </a>
       </li>
-      <li className="nav-li">
-        <a className="nav-link" href="#work">
+      <li>
+        <a 
+          onClick={onItemClick}
+          className="text-neutral-400 hover:text-white transition-colors px-4 py-2 rounded-full hover:bg-white/5" 
+          href="#projects"
+        >
           Projects
         </a>
       </li>
-      <li className="nav-li">
-        <a className="nav-link" href="#contact">
+      <li>
+        <a 
+          onClick={onItemClick}
+          className="text-neutral-400 hover:text-white transition-colors px-4 py-2 rounded-full hover:bg-white/5" 
+          href="#contact"
+        >
           Contact
         </a>
       </li>
@@ -28,40 +45,48 @@ function Navigation() {
 }
 
 const Navbar = () => {
-    const [isOpen, setIsOpen] = useState(false);
-    return (
-        <div className = "fixed inset-x-0 z-20 w-full backdrop-blur-lg bg-primary/40"> 
-            <div className = "mx-auto c-space max-w-7xl"> 
-                <div className = "flex items-center justify-between py-2 sm:py-0">
-                    <a href="/" className = "text-xl font-bold transition-colors text-neutral-400 hover:text-white">
-                        Abdul Rehman
-                    </a>
-                    <button onClick={() => setIsOpen(!isOpen)}
-                        className="flex cursor-pointer text-neutral-400 hover:text-white focus:outline-none sm:hidden"> 
-                        <img src={isOpen ? `${import.meta.env.BASE_URL}assets/close.svg` : `${import.meta.env.BASE_URL}assets/menu.svg`}
-                        className="w-6 h-6" 
-                        alt="toggle"/>
-                    </button>
-                    <nav className="hidden sm:flex">
-                        <Navigation />
-                    </nav>
-                </div>
-            </div>
-            {isOpen && (
-                <motion.div
-                className="block overflow-hidden text-center sm:hidden"
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                style={{ maxHeight: "100vh" }}
-                transition={{ duration: 1 }}
-                >
-                <nav className="pb-5">
-                    <Navigation />
-                </nav>
-                </motion.div>
-            )}
-        </div>
-    )
-}
+  const [isOpen, setIsOpen] = useState(false);
 
-export default Navbar
+  return (
+    <header className="fixed top-4 inset-x-0 z-50 px-4">
+      <div className="max-w-4xl mx-auto rounded-full bg-midnight/80 border border-white/10 backdrop-blur-xl px-6 py-3 flex items-center justify-between shadow-2xl">
+        
+        {/* Brand/Logo */}
+        <a href="#home" className="text-sm font-bold tracking-tight text-white flex items-center gap-2">
+          <span className="size-2 rounded-full bg-lavender" />
+          Abdul Rehman
+        </a>
+
+        {/* Desktop Nav */}
+        <nav className="hidden sm:block">
+          <Navigation />
+        </nav>
+
+        {/* Mobile Toggle Button */}
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="sm:hidden text-neutral-400 hover:text-white focus:outline-none cursor-pointer"
+        >
+          <img
+            src={isOpen ? `${import.meta.env.BASE_URL}assets/close.svg` : `${import.meta.env.BASE_URL}assets/menu.svg`}
+            className="w-5 h-5"
+            alt="Toggle Menu"
+          />
+        </button>
+      </div>
+
+      {/* Mobile Drawer */}
+      {isOpen && (
+        <motion.div
+          className="sm:hidden mt-2 p-4 rounded-3xl bg-midnight/95 border border-white/10 backdrop-blur-2xl text-center max-w-4xl mx-auto"
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+        >
+          <Navigation onItemClick={() => setIsOpen(false)} />
+        </motion.div>
+      )}
+    </header>
+  );
+};
+
+export default Navbar;

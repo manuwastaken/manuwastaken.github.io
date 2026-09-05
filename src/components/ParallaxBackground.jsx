@@ -9,8 +9,9 @@ const ParallaxBackground = () => {
   const mountain1Y = useTransform(x, [0, 0.5], ["0%", "0%"]);
 
   return (
-    <section className="absolute inset-0 bg-black/40">
-      <div className="relative h-screen overflow-y-hidden">
+    <section className="absolute inset-0 bg-[#030412]">
+      {/* Container with brightness-50 applied ONLY to background image layers */}
+      <div className="relative h-screen overflow-y-hidden brightness-50">
         {/* Background Sky */}
         <div
           className="absolute inset-0 w-full h-screen -z-50"
@@ -50,7 +51,7 @@ const ParallaxBackground = () => {
             y: mountain2Y,
           }}
         />
-        {/* Mountaine Layer 1 */}
+        {/* Mountain Layer 1 */}
         <motion.div
           className="absolute inset-0 -z-10"
           style={{
@@ -61,6 +62,12 @@ const ParallaxBackground = () => {
           }}
         />
       </div>
+
+      {/* Dark overlay specifically behind content to soften highlights */}
+      <div className="absolute inset-0 bg-black/40 pointer-events-none" />
+
+      {/* Bottom fade mask */}
+      <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-[#030412] via-[#030412]/80 to-transparent pointer-events-none" />
     </section>
   );
 };

@@ -1,22 +1,26 @@
 import { mySocials } from "../constants";
+
 const Footer = () => {
   return (
-    <section className="flex flex-wrap items-center justify-between gap-5 pb-3 text-sm text-neutral-400 c-space">
-      <div className="mb-4 bg-gradient-to-r from-transparent via-neutral-700 to-transparent h-[1px] w-full" />
-      <div className="flex gap-2">
-        <p>Terms & Conditions</p>
-        <p>|</p>
-        <p>Privacy Policy</p>
+    <footer className="c-space py-8 border-t border-white/10 mt-20">
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-neutral-400">
+        <p>© 2026 Abdul Rehman Hasan Syed. All rights reserved.</p>
+
+        <div className="flex items-center gap-4">
+          {mySocials.map((social, index) => (
+            <a
+              href={social.href}
+              key={index}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition-colors"
+            >
+              <img src={social.icon} className="size-4 opacity-70 hover:opacity-100" alt={social.name} />
+            </a>
+          ))}
+        </div>
       </div>
-      <div className="flex gap-3">
-        {mySocials.map((social, index) => (
-          <a href={social.href} key={index}>
-            <img src={social.icon} className="w-5 h-5" alt={social.name} />
-          </a>
-        ))}
-      </div>
-      <p>© 2026 Abdul Rehman. All rights reserved.</p>
-    </section>
+    </footer>
   );
 };
 

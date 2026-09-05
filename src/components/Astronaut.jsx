@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { useGLTF, useAnimations } from "@react-three/drei";
-import { useMotionValue, useSpring } from "motion/react";
+import { useMotionValue, useSpring } from "framer-motion";
 import { useFrame } from "@react-three/fiber";
 
 export function Astronaut(props) {
@@ -9,6 +9,21 @@ export function Astronaut(props) {
     `${import.meta.env.BASE_URL}models/tenhun_falling_spaceman_fanart.glb`
   );
   const { actions } = useAnimations(animations, group);
+
+  // Add this inside your Astronaut component, right under where you load the GLTF:
+
+useEffect(() => {
+  const mat = materials["AstronautFallingTexture.png"];
+  if (mat) {
+    // Dim the base color of the texture so it isn't overly bright
+    mat.color.setHex(0xa0a0a0); 
+    // Increase roughness so it absorbs light rather than reflecting it brightly
+    mat.roughness = 0.9;
+    // Lower environment map glare
+    mat.envMapIntensity = 0.2; 
+  }
+}, [materials]);
+
   useEffect(() => {
     if (animations.length > 0) {
       actions[animations[0].name]?.play();
@@ -17,12 +32,17 @@ export function Astronaut(props) {
 
   const yPosition = useMotionValue(5);
   const ySpring = useSpring(yPosition, { damping: 30 });
+
   useEffect(() => {
     ySpring.set(-1);
   }, [ySpring]);
+
   useFrame(() => {
-    group.current.position.y = ySpring.get();
+    if (group.current) {
+      group.current.position.y = ySpring.get();
+    }
   });
+
   return (
     <group
       ref={group}
@@ -97,20 +117,6 @@ export function Astronaut(props) {
                 material={materials["AstronautFallingTexture.png"]}
                 skeleton={nodes.Cube011_0.skeleton}
               />
-              <group name="Cube001" />
-              <group name="Cube005" />
-              <group name="Cube002" />
-              <group name="Plane" />
-              <group name="Cube008" />
-              <group name="Cube004" />
-              <group name="Cube003" />
-              <group name="Cube" />
-              <group
-                name="Cube009"
-                rotation={[-2.708, 0.013, -1.447]}
-                scale={1.307}
-              />
-              <group name="Cube011" />
             </group>
           </group>
         </group>

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
 import Alert from "../components/Alert";
-import { Particles } from "../components/Particles";
+
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -12,9 +12,11 @@ const Contact = () => {
   const [showAlert, setShowAlert] = useState(false);
   const [alertType, setAlertType] = useState("success");
   const [alertMessage, setAlertMessage] = useState("");
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+
   const showAlertMessage = (type, message) => {
     setAlertType(type);
     setAlertMessage(message);
@@ -23,12 +25,12 @@ const Contact = () => {
       setShowAlert(false);
     }, 5000);
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
 
     try {
-      console.log("From submitted:", formData);
       await emailjs.send(
         "service_79b0nyj",
         "template_17us8im",
@@ -43,86 +45,83 @@ const Contact = () => {
       );
       setIsLoading(false);
       setFormData({ name: "", email: "", message: "" });
-      showAlertMessage("success", "You message has been sent!");
+      showAlertMessage("success", "Your message has been sent!");
     } catch (error) {
       setIsLoading(false);
-      console.log(error);
-      showAlertMessage("danger", "Somthing went wrong!");
+      showAlertMessage("danger", "Something went wrong!");
     }
   };
+
   return (
-    <section className="relative flex items-center c-space section-spacing" id = "contact">
-      <Particles
-        className="absolute inset-0 -z-50"
-        quantity={100}
-        ease={80}
-        color={"#ffffff"}
-        refresh
-      />
+    <section className="c-space section-spacing relative" id="contact">
       {showAlert && <Alert type={alertType} text={alertMessage} />}
-      <div className="flex flex-col items-center justify-center max-w-md p-5 mx-auto border border-white/10 rounded-2xl bg-primary">
-        <div className="flex flex-col items-start w-full gap-5 mb-10">
-          <h2 className="text-heading">Let's Talk</h2>
-          <p className="font-normal text-neutral-400">
-           Whether you're looking for a motivated Computer Science student for a working student position, support on a development project,
-           or collaboration on new ideas, I'd be happy to connect and contribute.
-          </p>
-        </div>
-        <form className="w-full" onSubmit={handleSubmit}>
-          <div className="mb-5">
-            <label htmlFor="name" className="feild-label">
-              Full Name
+
+      {/* Sawad Section Header */}
+      <div className="flex flex-col gap-2 mb-10 max-w-xl mx-auto text-center">
+        <span className="text-xs font-mono uppercase tracking-widest text-lavender">Contact</span>
+        <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">Let's Connect</h2>
+        <p className="text-sm text-neutral-400 font-light mt-1">
+          Open to roles and collaborations across AI Engineering, LLM Systems, and Systems Architecture[cite: 1].
+        </p>
+      </div>
+
+      {/* Form Card */}
+      <div className="max-w-xl mx-auto bg-midnight/70 border border-white/10 rounded-2xl p-8 backdrop-blur-xl shadow-2xl">
+        <form className="space-y-5" onSubmit={handleSubmit}>
+          <div>
+            <label htmlFor="name" className="block text-xs font-mono text-neutral-300 mb-2">
+              FULL NAME
             </label>
             <input
               id="name"
               name="name"
               type="text"
-              className="field-input field-input-focus"
               placeholder="John Doe"
-              autoComplete="name"
               value={formData.name}
               onChange={handleChange}
               required
+              className="w-full h-11 rounded-xl px-4 text-sm bg-white/5 border border-white/10 text-white placeholder-neutral-500 focus:outline-none focus:border-lavender transition duration-200"
             />
           </div>
-          <div className="mb-5">
-            <label htmlFor="email" className="feild-label">
-              Email
+
+          <div>
+            <label htmlFor="email" className="block text-xs font-mono text-neutral-300 mb-2">
+              EMAIL ADDRESS
             </label>
             <input
               id="email"
               name="email"
               type="email"
-              className="field-input field-input-focus"
-              placeholder="JohnDoe@email.com"
-              autoComplete="email"
+              placeholder="john@example.com"
               value={formData.email}
               onChange={handleChange}
               required
+              className="w-full h-11 rounded-xl px-4 text-sm bg-white/5 border border-white/10 text-white placeholder-neutral-500 focus:outline-none focus:border-lavender transition duration-200"
             />
           </div>
-          <div className="mb-5">
-            <label htmlFor="message" className="feild-label">
-              Message
+
+          <div>
+            <label htmlFor="message" className="block text-xs font-mono text-neutral-300 mb-2">
+              YOUR MESSAGE
             </label>
             <textarea
               id="message"
               name="message"
-              type="text"
               rows="4"
-              className="field-input field-input-focus"
-              placeholder="Share your thoughts..."
-              autoComplete="message"
+              placeholder="What project or role do you have in mind?"
               value={formData.message}
               onChange={handleChange}
               required
+              className="w-full p-4 text-sm bg-white/5 border border-white/10 rounded-xl text-white placeholder-neutral-500 focus:outline-none focus:border-lavender transition duration-200"
             />
           </div>
+
           <button
             type="submit"
-            className="w-full px-1 py-3 text-lg text-center rounded-md cursor-pointer bg-radial from-lavender to-royal hover-animation"
+            disabled={isLoading}
+            className="w-full h-12 rounded-xl bg-gradient-to-r from-royal to-lavender text-white font-medium text-sm hover:opacity-90 transition duration-200 cursor-pointer disabled:opacity-50"
           >
-            {!isLoading ? "Send" : "Sending..."}
+            {isLoading ? "Sending..." : "Send Message"}
           </button>
         </form>
       </div>
